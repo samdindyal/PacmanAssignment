@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 */
 public class GameWindow extends JFrame implements ActionListener, PopupMenuListener{
 
-	private JPanel controls; 
+	private JPanel controls;
 	private GameComponent game;
 	private JLabel score, status, time, difficultyL, pSpeedL, title, scoreAdd;
 	private JButton pause, reset;
@@ -35,7 +35,7 @@ public class GameWindow extends JFrame implements ActionListener, PopupMenuListe
 	public GameWindow()
 	{
 		super("Assignment 1 - Sam Dindyal");
-		
+
 		setUndecorated(true);
         getContentPane().setBackground(Color.DARK_GRAY);
         setUndecorated(false);
@@ -47,7 +47,7 @@ public class GameWindow extends JFrame implements ActionListener, PopupMenuListe
 		timer = new Timer(10, this);
 		counter = 0;
 		scoreAddCounter = 0;
-		title = new JLabel("The Best Game Ever");
+		title = new JLabel("PacMan Assignment");
 		title.setForeground(Color.WHITE);
 		title.setFont(new Font ("Arial", Font.BOLD, 42));
 
@@ -60,12 +60,13 @@ public class GameWindow extends JFrame implements ActionListener, PopupMenuListe
 		game.setBounds(10, 75, game.getWidth(), game.getHeight());
 		title.setBounds((getWidth() - (int)title.getPreferredSize().getWidth())/2, (game.getY()-(int)title.getPreferredSize().getHeight())/2, (int)title.getPreferredSize().getWidth(),(int)title.getPreferredSize().getHeight());
 
-		setVisible(true);
 		game.trigger();
 		game.setDifficulty("Easy");
 
 		addKeyListener(game);
 		game.grabFocus();
+
+		setVisible(true);
 
 	}
 /**
@@ -128,7 +129,7 @@ public class GameWindow extends JFrame implements ActionListener, PopupMenuListe
 		reset.addActionListener(this);
 		predatorSpeed.addPopupMenuListener(this);
 		difficulty.addPopupMenuListener(this);
-		
+
 		controls.setOpaque(false);
 
 		return controls;
@@ -166,7 +167,7 @@ public class GameWindow extends JFrame implements ActionListener, PopupMenuListe
 		game.grabFocus();
 
 		pause.setBounds(getWidth()-(int)pause.getPreferredSize().getWidth()-25, 0, (int)pause.getPreferredSize().getWidth() + 25, 25);
-	
+
 	}
 /**
 	Pauses the game by stopping the timer.
@@ -178,7 +179,7 @@ public class GameWindow extends JFrame implements ActionListener, PopupMenuListe
 		pause.setText("Go");
 		score.setForeground(Color.LIGHT_GRAY);
 		pause.setBounds(getWidth()-(int)pause.getPreferredSize().getWidth()-25, 0, (int)pause.getPreferredSize().getWidth() + 25, 25);
-	
+
 	}
 /**
 	Ends the game by asking the user if he/she would like to play again, then, resets if yes, terminates if no.
@@ -189,12 +190,12 @@ public class GameWindow extends JFrame implements ActionListener, PopupMenuListe
 		System.out.println(score.getText());
         if (JOptionPane.showConfirmDialog(null, "You won! \n Would you like to play again?", "Winner!", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
           reset();
-        else 
+        else
         {
            JOptionPane.showMessageDialog(this, "Thanks for playing! \nGoodbye!", null, JOptionPane.PLAIN_MESSAGE);
            System.exit(0);
        }
-        
+
 	}
 	public static void main (String[] args)
 	{
@@ -203,7 +204,7 @@ public class GameWindow extends JFrame implements ActionListener, PopupMenuListe
 /**
 	Handles ActionListener events.
 */
-	public void actionPerformed(ActionEvent e) 
+	public void actionPerformed(ActionEvent e)
 	{
 		if (e.getSource() == timer)
 		{
@@ -227,7 +228,7 @@ public class GameWindow extends JFrame implements ActionListener, PopupMenuListe
 			if (oldCounterMod != newCounterMod && scoreAddCounter > 0)
 				if (scoreAdd.isVisible())
 					scoreAdd.setVisible(false);
-			
+
 			time.setBounds(5,0, (int)time.getPreferredSize().getWidth(), (int)time.getPreferredSize().getHeight());
 			score.setBounds(5, time.getY()+time.getHeight()+5, (int)score.getPreferredSize().getWidth(), (int)score.getPreferredSize().getHeight());
 			if (!predatorSpeed.hasFocus())
@@ -249,7 +250,7 @@ public class GameWindow extends JFrame implements ActionListener, PopupMenuListe
 /**
 	Acts if popup menus are unselected.
 */
-	public void popupMenuWillBecomeInvisible(PopupMenuEvent e) 
+	public void popupMenuWillBecomeInvisible(PopupMenuEvent e)
 	{
 		if (e.getSource() == difficulty)
 			game.setDifficulty(difficulties[difficulty.getSelectedIndex()]);
@@ -261,7 +262,7 @@ public class GameWindow extends JFrame implements ActionListener, PopupMenuListe
 /**
 	Acts if popup menus are selected.
 */
-	public void popupMenuWillBecomeVisible(PopupMenuEvent e) 
+	public void popupMenuWillBecomeVisible(PopupMenuEvent e)
 	{
 		gameStatus = timer.isRunning();
 		pause();
