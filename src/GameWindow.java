@@ -44,6 +44,7 @@ public class GameWindow extends JFrame implements ActionListener, PopupMenuListe
 		setLayout(null);
 		setResizable(false);
 		setSize(480, 600);
+		setLocationRelativeTo(null);
 		timer = new Timer(10, this);
 		counter = 0;
 		scoreAddCounter = 0;
