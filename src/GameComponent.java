@@ -45,7 +45,7 @@ public class GameComponent extends JComponent implements KeyListener, MouseListe
 		prey = new ArrayList<Prey>();
 		predator = new Predator(new Rectangle(0, 0, sizeX, sizeY), 3, DirectionsNESW.EAST, 50);
 		int d = 0;
-		for (int i = 0; i<50; i++)
+		for (int i = 0; i<100; i++)
 		{
 			int xLen = random.nextInt((3*sizeX/4)-50) + 50;
 			int yLen = random.nextInt((3*sizeY/4)-50) + 50;
@@ -70,7 +70,7 @@ public class GameComponent extends JComponent implements KeyListener, MouseListe
 		{
 			if (prey.get(i).getDistance(predator)-predator.getRadius()-prey.get(i).getRadius()<=50)
 				prey.get(i).evade(predator);
-			
+
 			prey.get(i).move();
 			if (predator.collide(prey.get(i)))
 			{
@@ -88,7 +88,7 @@ public class GameComponent extends JComponent implements KeyListener, MouseListe
 	@param 	newSpeed 		An integer representation of the new speed of the "Predator".
 */
 	public void setPredatorSpeed(int newSpeed){predator.setSpeed(newSpeed);}
-	
+
 /**
 	Gets the color of the last "Prey" the "Predator" killed.
 
@@ -164,13 +164,13 @@ public class GameComponent extends JComponent implements KeyListener, MouseListe
 			predator.turn(DirectionsURDL.DOWN);
 	}
 	public void keyReleased(KeyEvent e) {}
-	
+
 /**
 	Does an action if a button on the mouse was pressed. In this case, turns the "Predator".
 
 	@param e 		The MouseEvents happening and being sent in.
 */
-	public void mouseClicked(MouseEvent e) 
+	public void mouseClicked(MouseEvent e)
 	{
 		if (SwingUtilities.isLeftMouseButton(e))
 			predator.turnCounterClockwise();
