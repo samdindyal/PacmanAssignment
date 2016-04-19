@@ -4,4 +4,4 @@ build:
 	echo "Main-Class: GameWindow" > Manifest
 	jar cfvm A1.jar Manifest -C bin  .
 clean:
-	rm -vf bin/*.class Manifest
+	rm -vf bin/*.class Manifest A1.jar
